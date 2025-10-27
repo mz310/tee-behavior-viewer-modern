@@ -260,7 +260,7 @@
           <input id="uname" name="uname" type="text" placeholder="ж: s022503012 эсвэл ashley3a" autocomplete="username" list="userlist"/>
         </div>
         <button id="lookupBtn" type="button">Тайлан харах</button>
-        <!-- <button id="refreshBtn" class="ghost" type="button" title="students.json-ийг дахин унших">Жагсаалт шинэчлэх</button> -->
+        <button id="refreshBtn" class="ghost" type="button" title="students.json-ийг дахин унших">Жагсаалт шинэчлэх</button>
       </div>
       <div id="ok" class="alert ok">Амжилттай! Доорх Canva тайлан нээгдлээ.</div>
       <div id="err" class="alert error" role="alert">Ийм username олдсонгүй. Үсгийн алдаа шалгаад дахин оролдоно уу.</div>
@@ -301,7 +301,7 @@
   const $ = (q)=>document.querySelector(q);
   const uname = $('#uname');
   const btn = $('#lookupBtn');
-  const refreshBtn = $('#refreshBtn');
+  //const refreshBtn = $('#refreshBtn');
   const ok = $('#ok');
   const err = $('#err');
   const toolbar = $('#toolbar');
@@ -422,11 +422,11 @@
     if(DB){ renderStudent(userKey, reportId); }
   }
 
-  btn.addEventListener('click', ()=> ensureDBThenRender(uname.value.trim().toLowerCase()));
-  refreshBtn.addEventListener('click', ()=> fetchDB(true).then(()=>{
-    ok.textContent='Жагсаалтыг шинэчиллээ.'; ok.style.display='block';
-    setTimeout(()=>{ ok.style.display='none'; ok.textContent='Амжилттай! Доорх Canva тайлан нээгдлээ.' }, 1600);
-  }).catch(e=>showErr(e.message)));
+  // btn.addEventListener('click', ()=> ensureDBThenRender(uname.value.trim().toLowerCase()));
+  // refreshBtn.addEventListener('click', ()=> fetchDB(true).then(()=>{
+  //   ok.textContent='Жагсаалтыг шинэчиллээ.'; ok.style.display='block';
+  //   setTimeout(()=>{ ok.style.display='none'; ok.textContent='Амжилттай! Доорх Canva тайлан нээгдлээ.' }, 1600);
+  // }).catch(e=>showErr(e.message)));
 
   uname.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ ensureDBThenRender(uname.value.trim().toLowerCase()); }});
 
