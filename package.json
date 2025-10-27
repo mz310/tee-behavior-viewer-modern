@@ -1,5 +1,24 @@
 {
   "dependencies": {
     "@vercel/analytics": "^1.5.0"
-  }
+  },
+  "name": "tee-behavior-viewer-modern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mz310/tee-behavior-viewer-modern.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mz310/tee-behavior-viewer-modern/issues"
+  },
+  "homepage": "https://github.com/mz310/tee-behavior-viewer-modern#readme"
 }
