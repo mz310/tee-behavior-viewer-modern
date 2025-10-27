@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tee Education – Зан төлөвийн тайлан</title>
+  <meta name="description" content="QR-аар орж ирээд username оруулаад Canva тайлангаа шууд үзэх нэг нүүр веб." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ============ Brand tokens ============ */
+    :root{
+      --yellow:#F4B400;
+      --green:#0F9D58;
+      --red:#DB4437;
+      --blue:#4285F4;
+      --black:#000000;
+      --ink:#ffffff;
+      --muted:#9ca3af;
+      --glass:#0B0F1Acc;
+      --glass-2:#0B0F1A99;
+      --border:#1f2937;
+      --radius:14px;
+      --shadow: 0 16px 40px rgba(0,0,0,.4);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      color:var(--ink);
+      font-family:'Josefin Sans', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: radial-gradient(50% 60% at 15% -5%, rgba(66,133,244,.18), transparent 55%),
+                  radial-gradient(50% 60% at 95% 10%, rgba(15,157,88,.15), transparent 55%),
+                  radial-gradient(35% 35% at 85% 85%, rgba(244,180,0,.12), transparent 55%),
+                  linear-gradient(125deg, #090d16 0%, #0a0f1a 50%, #0a1215 100%);
+      background-size: 120% 120%, 120% 120%, 120% 120%, 100% 100%;
+      animation: bgShift 20s ease-in-out infinite alternate;
+      overflow-x:hidden;
+      min-height:100vh;
+    }
+    @keyframes bgShift{
+      0%{ background-position: 0% 0%, 100% 0%, 0% 100%, 0% 0% }
+      100%{ background-position: 40% 20%, 60% 15%, 100% 60%, 0% 0% }
+    }
+
+    .wrap{max-width:1100px; margin:0 auto; padding:20px 24px 32px; display:flex; flex-direction:column; min-height:100vh}
+
+    /* ============ Compact Header Bar ============ */
+    .header-bar{
+      display:flex; align-items:center; gap:16px; margin-bottom:24px;
+      background: linear-gradient(135deg, var(--glass), var(--glass-2));
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:14px 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.3);
+    }
+    .header-logo{
+      width:70px; height:48px; flex-shrink:0;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,.25));
+    }
+    .header-content{
+      flex:1; display:flex; flex-direction:column; gap:6px;
+    }
+    .site-title{
+      font-size:20px; font-weight:800; line-height:1.2; letter-spacing:0.3px;
+      color:var(--ink);
+    }
+    .accent-bar{
+      height: 4px; border-radius:999px;
+      background: linear-gradient(90deg, var(--yellow), var(--red), var(--green), var(--blue));
+      filter: drop-shadow(0 2px 8px rgba(66,133,244,.25));
+      animation: barGlow 8s ease-in-out infinite alternate;
+    }
+    @keyframes barGlow{
+      from{ opacity:.85 }
+      to  { opacity:1 }
+    }
+    .site-subtitle{
+      font-size:13px; color:var(--muted); margin-top:4px; line-height:1.4;
+    }
+
+    /* ============ Main Card ============ */
+    .card{
+      position:relative;
+      background: linear-gradient(160deg, var(--glass), var(--glass-2));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      flex:1;
+    }
+    .card::before{
+      content:""; position:absolute; inset:-2px;
+      background: radial-gradient(300px 150px at 30% -10%, rgba(66,133,244,.08), transparent 70%);
+      pointer-events:none;
+      z-index:0;
+    }
+    .card > *{ position:relative; z-index:1; }
+
+    /* ============ Form Controls ============ */
+    .controls{ display:grid; grid-template-columns: 1fr auto auto; gap:10px; align-items:end }
+    label{ display:block; color:var(--muted); font-size:13px; margin-bottom:6px; font-weight:600 }
+    .input-wrap{ position:relative }
+    .input-wrap .icon{
+      position:absolute; left:12px; top:50%; transform:translateY(-50%);
+      width:18px; height:18px; opacity:.6;
+    }
+    input[type=text]{
+      width:100%;
+      background:#0a1018; color:var(--ink); border:1px solid var(--border);
+      padding:11px 14px; border-radius:10px; font-size:15px; outline:none;
+      transition: box-shadow .2s ease, border-color .2s ease;
+      font-family: inherit;
+    }
+    input[type=text]:focus{
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(66,133,244,.2);
+    }
+    button{
+      border:none; cursor:pointer; font-weight:700; font-size:14px; letter-spacing:0.3px;
+      padding:11px 18px; border-radius:10px; 
+      background: linear-gradient(135deg, var(--yellow), var(--green));
+      color:#0a0e0a; box-shadow: 0 4px 16px rgba(244,180,0,.25);
+      transition: transform .15s ease, box-shadow .2s ease;
+      font-family: inherit;
+      white-space:nowrap;
+    }
+    button:hover{ transform: translateY(-1px); box-shadow:0 6px 20px rgba(244,180,0,.35) }
+    button:active{ transform: translateY(0) }
+    .ghost{
+      background: transparent; color:var(--ink); border:1px solid var(--border); 
+      box-shadow:0 2px 8px rgba(0,0,0,.2);
+    }
+    .ghost:hover{ 
+      background: rgba(255,255,255,.05);
+      box-shadow:0 4px 12px rgba(0,0,0,.3);
+    }
+
+    .hint{ font-size:11px; color:#6b7280; margin-top:8px; line-height:1.4 }
+    .hint code{ background:#0a1018; padding:2px 6px; border-radius:4px; font-size:10px }
+
+    /* ============ Alerts ============ */
+    .alert{display:none;margin-top:12px;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600}
+    .alert.error{color:#fca5a5;background:#7f1d1d22;border:1px solid #7f1d1d44}
+    .alert.ok{color:#6ee7b7;background:#065f4622;border:1px solid #065f4644}
+
+    /* ============ Toolbar ============ */
+    .toolbar{ 
+      display:flex; align-items:center; justify-content:space-between; 
+      gap:12px; flex-wrap:wrap; margin-top:16px; padding-top:16px;
+      border-top:1px solid var(--border);
+    }
+    .student-info{flex:1; min-width:200px}
+    .title{ font-weight:800; font-size:16px; margin-bottom:4px }
+    .meta{ font-size:12px; color:var(--muted) }
+    .actions{ display:flex; gap:8px; flex-wrap:wrap }
+    .actions button{ 
+      padding:8px 14px; font-size:13px;
+      box-shadow:0 2px 8px rgba(0,0,0,.15);
+    }
+    select{
+      background:#0a1018; color:var(--ink); border:1px solid var(--border);
+      padding:8px 12px; border-radius:8px; font-size:13px; font-family:inherit;
+      cursor:pointer;
+    }
+
+    /* ============ Embed ============ */
+    .embed{
+      position:relative; width:100%; height:0; padding-top:177.7778%;
+      border-radius:12px; border:1px solid var(--border); overflow:hidden; margin-top:16px;
+      background:#0a0f18;
+      box-shadow: 0 12px 32px rgba(0,0,0,.35);
+      display:none;
+    }
+    .embed iframe{ position:absolute; inset:0; width:100%; height:100%; border:0 }
+
+    .note{ 
+      display:none; margin-top:12px; font-size:13px; color:#d1d5db; 
+      background:#0d1520; border:1px solid #1f2937; border-radius:10px; padding:10px 14px 
+    }
+    .note code{background:#0a1018; padding:2px 6px; border-radius:4px; font-size:11px}
+
+    /* ============ Footer ============ */
+    footer{ 
+      margin:32px 0 0; color:var(--muted); font-size:11px; 
+      display:flex; align-items:center; gap:16px; justify-content:space-between; 
+      flex-wrap:wrap; padding-top:20px; border-top:1px solid #1a1f2b
+    }
+    .logo-row{ display:flex; gap:10px; align-items:center }
+    .badge{
+      display:grid; place-items:center; 
+      background:#0a1018; border:1px solid var(--border); border-radius:10px; 
+      padding:6px 8px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .badge img{ height:22px; width:auto; display:block }
+    .badge:hover{ 
+      transform: translateY(-2px); 
+      box-shadow:0 6px 16px rgba(0,0,0,.3);
+    }
+
+    /* ============ Mascot ============ */
+    .mascot{
+      position:fixed; right:20px; bottom:20px; 
+      width:80px; height:auto; pointer-events:none; opacity:.75;
+      animation: floatY 6s ease-in-out infinite;
+      filter: drop-shadow(0 6px 16px rgba(0,0,0,.4));
+    }
+    @keyframes floatY{
+      0%, 100%{ transform: translateY(0) }
+      50%{ transform: translateY(-8px) }
+    }
+
+    /* ============ Responsive ============ */
+    @media (max-width:768px){
+      .header-bar{ flex-direction:column; align-items:flex-start; padding:16px }
+      .header-logo{ width:42px; height:42px }
+      .site-title{ font-size:18px }
+      .controls{ grid-template-columns:1fr }
+      .controls button{ width:100% }
+      .toolbar{ flex-direction:column; align-items:stretch }
+      .actions{ width:100% }
+      .actions button{ flex:1 }
+      select{ width:100% }
+      .mascot{ display:none }
+      .wrap{ padding:16px }
+    }
+
+    @media (max-width:480px){
+      .site-title{ font-size:16px }
+      .actions{ flex-direction:column }
+      .actions button{ width:100% }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Compact Header Bar -->
+    <header class="header-bar">
+      <img class="header-logo" src="assets/MainLogoWithScrip.png  " alt="Tee Education Logo" />
+      <div class="header-content">
+        <h1 class="site-title">The Essential Engineering Education School</h1>
+        <div class="accent-bar" aria-hidden="true"></div>
+        <p class="site-subtitle">QR-ээр орж ирээд сурагчийн username-ийг оруулан Canva дээрх тайлангаа үзнэ.</p>
+      </div>
+    </header>
+
+    <!-- Main Card -->
+    <section class="card" aria-label="Хайх хэсэг">
+      <label for="uname">Сурагчийн username</label>
+      <div class="controls">
+        <div class="input-wrap">
+          <img class="icon" src="assets/cutlogo.png" alt="" />
+          <input id="uname" name="uname" type="text" placeholder="ж: s022503012 эсвэл ashley3a" autocomplete="username" list="userlist"/>
+        </div>
+        <button id="lookupBtn" type="button">Тайлан харах</button>
+        <button id="refreshBtn" class="ghost" type="button" title="students.json-ийг дахин унших">Жагсаалт шинэчлэх</button>
+      </div>
+      <div id="ok" class="alert ok">Амжилттай! Доорх Canva тайлан нээгдлээ.</div>
+      <div id="err" class="alert error" role="alert">Ийм username олдсонгүй. Үсгийн алдаа шалгаад дахин оролдоно уу.</div>
+
+      <div class="toolbar" id="toolbar" style="display:none">
+        <div class="student-info">
+          <div class="title" id="studentTitle">—</div>
+          <div class="meta" id="metaLine"></div>
+        </div>
+        <div class="actions">
+          <select id="reportSelect" style="display:none"></select>
+          <button id="openCanva" class="ghost" type="button">Canva дээр нээх</button>
+          <button id="shareLink" class="ghost" type="button">Хуваалцах линк</button>
+          <button id="linkMode" class="ghost" type="button">Линкээр нээх</button>
+        </div>
+      </div>
+
+      <div class="embed" id="embed">
+        <iframe id="canvaFrame" loading="lazy" allow="fullscreen" allowfullscreen title="Canva тайлан"></iframe>
+      </div>
+      <div id="fallback" class="note">
+        iframe-д асуудал гарсан бол доорх "Линкээр нээх"-ийг дарна уу. Эсвэл URL-д <code>&noframe=1</code> нэмнэ.
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>© <span id="yr"></span> © Боловсролыг инженерчлэв..</div>
+    </footer>
+  </div>
+
+  <!-- Floating Mascot -->
+  <img class="mascot" src="assets/mascot.png" alt="" />
+
+  <datalist id="userlist"></datalist>
+
+  <script>
+  const DATA_URL = "/data/students.json";
+  const FETCH_OPTIONS = { cache: "no-cache" };
+
+  const $ = (q)=>document.querySelector(q);
+  const uname = $('#uname');
+  const btn = $('#lookupBtn');
+  const refreshBtn = $('#refreshBtn');
+  const ok = $('#ok');
+  const err = $('#err');
+  const toolbar = $('#toolbar');
+  const title = $('#studentTitle');
+  const meta = $('#metaLine');
+  const frame = $('#canvaFrame');
+  const embed = $('#embed');
+  const openBtn = $('#openCanva');
+  const shareBtn = $('#shareLink');
+  const linkModeBtn = $('#linkMode');
+  const fallback = $('#fallback');
+  const reportSelect = $('#reportSelect');
+  const userlist = $('#userlist');
+
+  let DB = null;
+  let lastKey = null;
+
+  $('#yr').textContent = new Date().getFullYear();
+
+  function ensureEmbed(url){
+    try{
+      const u = new URL(url);
+      if(u.pathname.endsWith('/view') && !u.searchParams.has('embed')){
+        u.searchParams.set('embed','');
+      }
+      return u.toString();
+    }catch(_){ return url; }
+  }
+
+  async function fetchDB(force=false){
+    const url = new URL(DATA_URL, window.location.origin);
+    if(force){ url.searchParams.set('_', Date.now()); }
+    const res = await fetch(url.toString(), FETCH_OPTIONS);
+    if(!res.ok) throw new Error('students.json уншиж чадсангүй: ' + res.status);
+    DB = await res.json();
+    // datalist
+    userlist.innerHTML = '';
+    const students = DB.students || {};
+    Object.keys(students).forEach(key=>{
+      const opt = document.createElement('option');
+      const dn = students[key].displayName || key;
+      opt.value = key; opt.label = dn;
+      userlist.appendChild(opt);
+    });
+  }
+
+  function pickReport(obj, reportId){
+    const reps = Array.isArray(obj.reports) ? obj.reports : [];
+    if(!reps.length) return null;
+    if(reportId){
+      return reps.find(r=> String(r.id) === String(reportId)) || reps[0];
+    }
+    return reps[0];
+  }
+
+  function showErr(msg){
+    err.textContent = msg || 'Алдаа гарлаа.';
+    err.style.display = 'block'; ok.style.display='none';
+    toolbar.style.display = 'none'; embed.style.display = 'none'; fallback.style.display = 'none';
+  }
+  function hideErr(){ err.style.display = 'none'; }
+
+  function renderStudent(key, reportId){
+    const s = (DB && DB.students && DB.students[key]);
+    if(!s){ showErr('Ийм username олдсонгүй.'); return; }
+
+    hideErr(); ok.style.display='block'; setTimeout(()=>ok.style.display='none', 2200);
+    title.textContent = (s.displayName || key) + ' – Зан төлөвийн тайлан';
+    meta.textContent = (DB.updatedAt ? ('Жагсаалт шинэчлэгдсэн: ' + DB.updatedAt) : '') + (s.class ? (' • Анги: ' + s.class) : '');
+
+    const reps = Array.isArray(s.reports) ? s.reports : [];
+    reportSelect.innerHTML = '';
+    if(reps.length > 1){
+      reportSelect.style.display = '';
+      reps.forEach((r, i)=>{
+        const o = document.createElement('option');
+        o.value = r.id ?? ('r'+i);
+        o.textContent = r.title ? r.title : (r.id ?? ('Тайлан '+(i+1)));
+        reportSelect.appendChild(o);
+      });
+      if(reportId){ reportSelect.value = String(reportId); }
+    }else{
+      reportSelect.style.display = 'none';
+    }
+
+    const rep = pickReport(s, reportId);
+    if(!rep){ showErr('Энэ сурагчид тайлан бүртгэгдээгүй байна.'); return; }
+
+    const canva = ensureEmbed(rep.canvaUrl);
+    lastKey = key;
+
+    if(window.__forceLinkMode__){
+      embed.style.display = 'none'; fallback.style.display = 'block';
+    } else {
+      frame.src = canva; embed.style.display = 'block'; fallback.style.display = 'none';
+    }
+    toolbar.style.display = 'flex';
+
+    openBtn.onclick = ()=> window.open(canva.replace('/view?embed','/view'), '_blank', 'noopener');
+    const link = new URL(window.location.href);
+    link.searchParams.set('u', key);
+    if(rep.id){ link.searchParams.set('r', rep.id); }
+    shareBtn.onclick = async ()=>{
+      const txt = link.toString();
+      try{ await navigator.clipboard.writeText(txt);
+        shareBtn.textContent='Хуулсан!'; setTimeout(()=>shareBtn.textContent='Хуваалцах линк', 1400);
+      }catch(_){ prompt('Энэ линкийг хуулна уу:', txt); }
+    };
+
+    try{ localStorage.setItem('tee-beh-report-last', key); }catch(_){}
+    embed.scrollIntoView({behavior:'smooth', block:'start'});
+
+    reportSelect.onchange = ()=> renderStudent(key, reportSelect.value);
+  }
+
+  async function ensureDBThenRender(userKey, reportId){
+    if(!DB){ await fetchDB(false).catch(e=>showErr(e.message)); }
+    if(DB){ renderStudent(userKey, reportId); }
+  }
+
+  btn.addEventListener('click', ()=> ensureDBThenRender(uname.value.trim().toLowerCase()));
+  refreshBtn.addEventListener('click', ()=> fetchDB(true).then(()=>{
+    ok.textContent='Жагсаалтыг шинэчиллээ.'; ok.style.display='block';
+    setTimeout(()=>{ ok.style.display='none'; ok.textContent='Амжилттай! Доорх Canva тайлан нээгдлээ.' }, 1600);
+  }).catch(e=>showErr(e.message)));
+
+  uname.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ ensureDBThenRender(uname.value.trim().toLowerCase()); }});
+
+  (function initFromURL(){
+    const p = new URLSearchParams(window.location.search);
+    const u = p.get('u'); const r = p.get('r');
+    window.__forceLinkMode__ = p.get('noframe') === '1';
+    const remembered = !u && localStorage.getItem('tee-beh-report-last');
+    fetchDB(false).then(()=>{
+      if(u){ uname.value=u; ensureDBThenRender(u, r); }
+      else if(remembered){ uname.value=remembered; }
+    }).catch(e=>showErr(e.message));
+  })();
+  </script>
+</body>
+</html>

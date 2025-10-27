@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "updatedAt": "2025-10-28",
+  "students": {
+    "s022503009": {
+      "displayName": "Indra",
+      "class": "3a",
+      "reports": [
+        {
+          "id": "default",
+          "title": "Үндсэн тайлан",
+          "canvaUrl": "https://www.canva.com/design/DAG29hex_CA/Z2scCV0E3mApLef3DOBHDg/view?embed",
+          "updatedAt": "2025-10-28"
+        }
+      ]
+    },
+    "s022503011": {
+      "displayName": "Tushig",
+      "class": "3a",
+      "reports": [
+        {
+          "id": "default",
+          "title": "Үндсэн тайлан",
+          "canvaUrl": "https://www.canva.com/design/DAG293jdcZM/9ZAM_mMkNSb2_loc8T3OtQ/view?embed",
+          "updatedAt": "2025-10-28"
+        }
+      ]
+    },
+    "s022503012": {
+      "displayName": "Chinguun",
+      "class": "3a",
+      "reports": [
+        {
+          "id": "default",
+          "title": "Үндсэн тайлан",
+          "canvaUrl": "https://www.canva.com/design/DAG292oH7bU/YSfC4DP55gS9aRqxA_nd-Q/view?embed",
+          "updatedAt": "2025-10-28"
+        }
+      ]
+    },
+    "s022503013": {
+      "displayName": "Tugsbayar",
+      "class": "3a",
+      "reports": [
+        {
+          "id": "default",
+          "title": "Үндсэн тайлан",
+          "canvaUrl": "https://www.canva.com/design/DAG297SXBzE/n-irNI7LHQS82-B0twV4qg/view?embed",
+          "updatedAt": "2025-10-28"
+        }
+      ]
+    },
+    "s022503014": {
+      "displayName": "Nandin-Erdene",
+      "class": "3a",
+      "reports": [
+        {
+          "id": "default",
+          "title": "Үндсэн тайлан",
+          "canvaUrl": "https://www.canva.com/design/DAG296LXWkY/LzHFD7qUBsk5cPYJs_6E6g/view?embed",
+          "updatedAt": "2025-10-28"
+        }
+      ]
+    },
+    "s022503015": {
+      "displayName": "Sugar",
+      "class": "3a",
+      "reports": [
+        {
+          "id": "default",
+          "title": "Үндсэн тайлан",
+          "canvaUrl": "https://www.canva.com/design/DAG2968cnoU/-ArPhH7hU6qPO3hul6mQdg/view?embed",
+          "updatedAt": "2025-10-28"
+        }
+      ]
+    }
+  }
+}
