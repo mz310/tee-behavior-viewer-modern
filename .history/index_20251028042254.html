@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tee Education – Зан төлөвийн тайлан</title>
+  <meta name="description" content="QR-аар орж ирээд username оруулаад Canva тайлангаа шууд үзэх нэг нүүр веб." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<script>
+  window.va = window.va || function () {
+    (window.vaq = window.vaq || []).push(arguments);
+  };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<body>
+  <div class="wrap">
+    <!-- Compact Header Bar -->
+    <header class="header-bar">
+      <img class="header-logo" src="assets/MainLogoWithScrip.png" alt="Tee Education Logo" />
+      <div class="header-content">
+        <h1 class="site-title">The Essential Engineering Education School</h1>
+        <div class="accent-bar" aria-hidden="true"></div>
+      </div>
+    </header>
+
+    <!-- Main Card -->
+    <section class="card" aria-label="Хайх хэсэг">
+      <label for="uname">Сурагчийн username</label>
+      <div class="controls">
+        <div class="input-wrap">
+          <input id="uname" name="uname" type="text" placeholder="ж: s002503012" autocomplete="username" list="userlist"/>
+        </div>
+        <button id="lookupBtn" type="button">Тайлан харах</button>
+      </div>
+      <div id="ok" class="alert ok">Амжилттай! Доорх Canva тайлан нээгдлээ.</div>
+      <div id="err" class="alert error" role="alert">Ийм username олдсонгүй. Үсгийн алдаа шалгаад дахин оролдоно уу.</div>
+
+      <div class="toolbar" id="toolbar" style="display:none">
+        <div class="student-info">
+          <div class="title" id="studentTitle">—</div>
+          <div class="meta" id="metaLine"></div>
+        </div>
+        <div class="actions">
+          <select id="reportSelect" style="display:none"></select>
+          <button id="openCanva" class="ghost" type="button">Canva дээр нээх</button>
+        </div>
+      </div>
+
+      <div class="embed" id="embed">
+        <iframe id="canvaFrame" loading="lazy" allow="fullscreen" allowfullscreen title="Canva тайлан"></iframe>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>© <span id="yr"></span> © Боловсролыг инженерчлэв.</div>
+      <div class="logo-row">
+      </div>
+    </footer>
+  </div>
+
+  <!-- Floating Mascot -->
+  <img class="mascot" src="assets/mascot.png" alt="" />
+
+  <!-- Popup Modal -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-card">
+      <h2 class="popup-title">Хүүхдийнхээ username-ийг оруулна уу</h2>
+      <p class="popup-desc">Доорх нүдэнд хүүхдийнхээ хэрэглэгчийн нэрийг бичээд “Тайлан харах” товчийг дарж зан төлвийн тайлангаа үзнэ үү.</p>
+      <input 
+        type="text" 
+        id="popupUsername" 
+        class="popup-input" 
+        placeholder="e.g., s002503012"
+        autocomplete="username"
+        list="userlist"
+      />
+      <div class="popup-actions">
+        <button id="popupViewReport" type="button">Тайлан харах</button>
+        <button id="popupGotIt" class="ghost" type="button">Ойлголоо</button>
+      </div>
+    </div>
+  </div>
+
+  <datalist id="userlist"></datalist>
+
+  <script src="script.js"></script>
+</body>
+</html>
